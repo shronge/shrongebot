@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 require("dotenv").config();
 
 const { App } = require("@slack/bolt");
@@ -14,6 +16,43 @@ app.command("/shrongebot-ping", async ({ command, ack, respond }) => {
   const latency = Date.now() - start;
   await respond({ text: `Pong!\nLatency: ${latency}ms` });
 });
+
+app.command("/shrongebot-help", async ({ ack, respond }) => {
+  await ack();
+  await respond({
+    text:
+`Available Commands:
+/shrongebot-ping - Check bot latency
+/shrongebot-catfact - Get a cat fact`
+  });
+});
+
+app.command("/shrongebot-catfact", async ({ ack, respond }) => {
+  await ack();
+
+  try {
+    const response = await axios.get("https://catfact.ninja/fact");
+    await respond({ text: `Cat Fact:\n${response.data.fact}` });
+  } catch (err) {
+    await respond({ text: "Failed to fetch a cat fact." });
+  }
+});
+
+app.command("/shrongebot-joke", async ({ ack, respond }) => {
+  await ack();
+
+  try {
+    const response = await axios.get("https://official-joke-api.appspot.com/random_joke");
+    await respond({
+      text:
+`${response.data.setup}
+
+${response.data.punchline}`
+    });
+  } catch (err) {
+    await respond({ text: "Failed to fetch a joke." });
+  }
+});>
 
 (async () => {
   await app.start();
