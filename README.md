@@ -25,6 +25,10 @@ Shrongebot uses something called _slash commands_. In fact almost every bot in s
   <br>
   _/shrongebot-help_ (Can't remember the commands, just use this one!)
 
+  AI usage:
+  ------------
+  I used AI to support my learning (which i did a lot of) and help me understand the reasons behind each step. Additionally, AI was used to help me catch and fix bugs in the code.
+
   created by.......
   --------------------
   ......shronge. it is very aptly named.
