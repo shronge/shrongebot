@@ -52,7 +52,7 @@ ${response.data.punchline}`
   } catch (err) {
     await respond({ text: "Failed to fetch a joke." });
   }
-});>
+});
 
 (async () => {
   await app.start();
